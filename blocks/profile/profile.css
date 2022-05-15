@@ -1,5 +1,5 @@
 .profile {
-  width: 68.75%;
+  max-width: 880px;
   margin: 0 auto;
   padding: 40px 0 0 0;
   display: flex;
@@ -9,7 +9,7 @@
   box-sizing: border-box;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
   .profile {
     width: 100%;
     padding: 28px 19px 0;

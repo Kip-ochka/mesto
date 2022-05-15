@@ -6,14 +6,16 @@
   color: #fff;
   margin: 0;
   padding: 16px 0 0 0;
+  max-width: 100%;
 }
 
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
   .profile__job {
     margin: 0 auto;
     font-size: 14px;
     line-height: 17px;
+    max-width: 282px;
   }
 }
 

@@ -17,17 +17,24 @@
 @import url(../blocks/profile/__wrapper/profile__wrapper.css);
 @import url(../blocks/profile/__text-wrapper/profile__text-container.css);
 
+@import url(../blocks/card-grid/card-grid.css);
+
+@import url(../blocks/card/card.css);
+@import url(../blocks/card/__like-button/card__like-button.css);
+@import url(../blocks/card/__image/card__image.css);
+@import url(../blocks/card/__title-container/card__title-container.css);
+@import url(../blocks/card/__title/card__title.css);
 
 
-
-
-
-
-
-
-
-
-
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__reset-button/popup__reset-button.css);
+@import url(../blocks/popup/__form/popup__form.css);
+@import url(../blocks/popup/__submit-button/popup__submit-button.css);
+@import url(../blocks/popup/__name/popup__name.css);
+@import url(../blocks/popup/__title/popup__title.css);
+@import url(../blocks/popup/__job/popup__job.css);
 
 
 @import url(../blocks/footer/footer.css);

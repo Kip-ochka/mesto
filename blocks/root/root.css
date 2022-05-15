@@ -1,5 +1,4 @@
-.page{
-  min-width: 880px;
+.page {
   background-color: #000;
   margin: 0 auto;
   font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
@@ -9,10 +8,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1024px) {
   .page {
-    min-width: 320px;
+    overflow: hidden;
   }
 }
