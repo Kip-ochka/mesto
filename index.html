@@ -103,21 +103,23 @@
     </footer>
 
     <div class="popup">
-      <form class="popup__container">
-        <button type="reset" class="popup__reset-button"></button>
+      <div class="popup__container">
+        <button type="button" class="popup__reset-button"></button>
         <h3 class="popup__title">Редактировать профиль
-        </h3>
-        <fieldset class="popup__form">
-          <input type="text" class="popup__name" placeholder="Имя">
-          <input type="text" class="popup__job" placeholder="О себе">
-        </fieldset>
-        <button type="submit" class="popup__submit-button">Сохранить
-        </button>
-      </form>
+        <form name="profile">
+          </h3>
+          <fieldset class="popup__form">
+            <input type="name" class="popup__input popup__input_type_name" placeholder="Имя" name="name">
+            <input type="name" class="popup__input popup__input_type_job" placeholder="О себе" name="job">
+          </fieldset>
+          <button type="submit" class="popup__submit-button">Сохранить
+          </button>
+        </form>
+      </div>
     </div>
 
   </div>
 
-  <script src="./index.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>

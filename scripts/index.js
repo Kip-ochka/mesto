@@ -2,8 +2,8 @@ const editButton = document.querySelector('.profile__edit-button')
 const popUp = document.querySelector('.popup')
 const resetButton = document.querySelector('.popup__reset-button')
 const formElement = document.querySelector('.popup__container')
-const nameInput = document.querySelector('.popup__name')
-const jobInput = document.querySelector('.popup__job')
+const nameInput = document.querySelector('.popup__input_type_name')
+const jobInput = document.querySelector('.popup__input_type_job')
 
 function open() {
   popUp.classList.add('popup_opened')

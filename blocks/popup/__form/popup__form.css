@@ -4,6 +4,7 @@
   flex-direction: column;
   padding: 0;
   min-width: 430px;
+  gap: 30px;
 }
 @media screen and (max-width: 1024px) {
   .popup__form {

@@ -1,4 +1,4 @@
-.popup__job {
+.popup__input{
   font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -7,20 +7,17 @@
   margin: 0;
   margin-left: 36px;
   border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, .15);
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
   max-width: 358px;
-
 }
 
-.popup__job::placeholder {
+.popup__input::placeholder {
   font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
 }
 
 @media screen and (max-width: 1024px) {
-  .popup__job {
-    font-size: 14px;
-    line-height: 17px;
-    max-width: 238px;
+  .popup__input {
     margin-left: 22px;
+    max-width: 238px;
   }
 }

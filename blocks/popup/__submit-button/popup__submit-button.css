@@ -12,12 +12,12 @@
   box-sizing: border-box;
   display: flex;
   justify-content: center;
-  max-width: 352px;
-  margin: 48px auto 47px;
+  max-width: 358px;
+  margin: 48px 36px 25px;
 }
 
 .popup__submit-button:hover {
-  opacity: .6;
+  opacity: .8;
 }
 
 @media screen and (max-width: 1024px) {
@@ -25,5 +25,9 @@
     max-width: 238px;
     font-size: 14px;
     line-height: 17px;
+    font-size: 14px;
+    line-height: 17px;
+    padding: 14px 82px;
+    margin: 48px 22px 25px;
   }
 }
