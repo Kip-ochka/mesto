@@ -7,14 +7,19 @@
   margin: 0;
   padding: 0;
   max-width: 294px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 @media screen and (max-width: 1024px) {
   .profile__name {
     font-size: 27px;
     line-height: 33px;
-    margin: 0 auto;
-    max-width: 282px;
+    margin-left: 25px;
+    max-width: 189px;
     text-align: center;
   }
 }
+
+
