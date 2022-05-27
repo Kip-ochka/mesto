@@ -15,5 +15,5 @@
 }
 
 .card__like-button:active {
-  opacity: .6;
+  fill: black;
 }
