@@ -48,7 +48,7 @@
         <button type="button" class="popup__reset-button popup__reset-button_type_edit"></button>
         <h3 class="popup__title">Редактировать профиль
         </h3>
-        <form name="profile">
+        <form name="profile" class="popup__form-wrapper popup__form-wrapper_type_edit-profile">
           <fieldset class="popup__form">
             <input type="text" class="popup__input popup__input_type_name" placeholder="Имя" name="name">
             <input type="text" class="popup__input popup__input_type_job" placeholder="О себе" name="job">
@@ -63,13 +63,21 @@
         <button type="button" class="popup__reset-button popup__reset-button_type_add"></button>
         <h3 class="popup__title">Новое место
         </h3>
-        <form name="add-cards">
+        <form name="add-card" class="popup__form-wrapper popup__form-wrapper_type_add-card">
           <fieldset class="popup__form">
             <input type="text" class="popup__input popup__input_type_place-name" placeholder="Название" name="place-name">
             <input type="text" class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" name="type_link">
           </fieldset>
           <button type="submit" class="popup__submit-button popup__submit-button_type_add">Создать</button>
         </form>
+      </div>
+    </div>
+
+    <div class="popup popup_type_opened-photo">
+      <div class="popup__container popup__container_type_opened-photo">
+        <button type="button" class="popup__reset-button popup__reset-button_type_opened-photo"></button>
+        <img src="" alt="" class="popup__opened-photo">
+        <figcaption class="popup__figcaption"></figcaption>
       </div>
     </div>
 
