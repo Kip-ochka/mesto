@@ -14,12 +14,12 @@ const popUpAdd = document.querySelector('.popup_type_add-card') // попап о
 const buttonCloseAddForm = document.querySelector('.popup__close-button_type_add') // кнопка закрытия попапа добавления карточки
 const popUpAddForm = document.querySelector('.popup__form-wrapper_type_add-card') // form добавления карточки
 const popUpPreview = document.querySelector('.popup_type_opened-photo')
-const resetPreviewButton = document.querySelector('.popup__close-button_type_opened-photo')
+const buttonClosePreview = document.querySelector('.popup__close-button_type_opened-photo')
 const previewImage = document.querySelector('.popup__opened-photo')
 const previewText = document.querySelector('.popup__figcaption')
 const profileJobTextContent = document.querySelector('.profile__job')
 const profileNameTextContent = document.querySelector('.profile__name')
-
+const cardTemplate = document.querySelector('#card-template').content
 //----------------------------------------------------------------------------------------------------------------------------------------
 //функция для открытия и закрытия попапа
 function open (popup) {
@@ -70,19 +70,17 @@ function closeAddButton () {
 
 // функция которая создает карточку
 function createCard (item) {
-  const cardTemplate = document.querySelector('#card-template').content
   const card = cardTemplate.querySelector('.card').cloneNode(true)
+  const likeButtonCard = card.querySelector('.card__like-button')
+  const deleteButtonCard = card.querySelector('.card__delete-button')
   const cardImage = card.querySelector('.card__image')
   const cardTitle = card.querySelector('.card__title')
   cardImage.alt = item.name
   cardImage.src = item.link
   cardTitle.textContent = item.name
-  card.querySelector('.card__like-button').addEventListener('click', activateLike)
-  card.querySelector('.card__delete-button').addEventListener('click', deleteCard)
-  cardImage.addEventListener('click', ()=>{
-    openCardImagePreview ()
-    openPreviewImage (item)
-  })
+  likeButtonCard.addEventListener('click', activateLike)
+  deleteButtonCard.addEventListener('click', deleteCard)
+  cardImage.addEventListener('click', ()=>{openPreviewImage(item)})
   return card
 }
 //----------------------------------------------------------------------------------------------------------------------------------------
@@ -96,10 +94,6 @@ function deleteCard (evnt) {
   evnt.target.closest('.card').remove()
 }
 
-function openCardImagePreview () {
-  open(popUpPreview)
-}
-
 function closeCardImagePreview () {
   close(popUpPreview)
 }
@@ -107,6 +101,7 @@ function closeCardImagePreview () {
 function openPreviewImage (item) {
   previewImage.src = item.link
   previewText.textContent = item.name
+  open(popUpPreview)
 }
 //----------------------------------------------------------------------------------------------------------------------------------------
 
@@ -133,7 +128,7 @@ initialCards.forEach((item)=>{
 // эвент листенры и вызовы
 buttonAddNewCard.addEventListener('click', openAddButton)
 buttonCloseAddForm.addEventListener('click', closeAddButton)
-resetPreviewButton.addEventListener('click', closeCardImagePreview)
+buttonClosePreview.addEventListener('click', closeCardImagePreview)
 cardFormElement.addEventListener('submit', handleCreateCardFromForm)
 buttonOpenEditProfile.addEventListener('click', openEditForm)
 buttonCloseEditButton.addEventListener('click', closeEditForm)
