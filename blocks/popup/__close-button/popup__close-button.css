@@ -1,4 +1,4 @@
-.popup__reset-button {
+.popup__close-button {
   background-image: url(../../../images/icons/reset-button.svg);
   border: 0;
   border-radius: 0;
@@ -13,12 +13,13 @@
   background-size: cover;
 }
 
-.popup__reset-button:hover {
+.popup__close-button:hover {
   opacity: .6;
+  cursor: pointer;
 }
 
 @media screen and (max-width:1024px){
-  .popup__reset-button {
+  .popup__close-button {
     right: 0px;
     width: 22px;
     height: 22px;
