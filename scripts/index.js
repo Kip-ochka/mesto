@@ -20,7 +20,9 @@ const previewText = document.querySelector('.popup__figcaption')
 const profileJobTextContent = document.querySelector('.profile__job')
 const profileNameTextContent = document.querySelector('.profile__name')
 const cardTemplate = document.querySelector('#card-template').content
+const popup = document.querySelector('.popup')
 //----------------------------------------------------------------------------------------------------------------------------------------
+
 //функция для открытия и закрытия попапа
 function open (popup) {
   popup.classList.add('popup_opened')
@@ -28,8 +30,12 @@ function open (popup) {
 
 function close (popup) {
   popup.classList.remove('popup_opened')
-
 }
+
+function closeOpenedByEsc(evt) {
+  if(evt.key === 'Escape') {
+  document.querySelector('.popup_opened').classList.remove('popup_opened');
+}}
 //----------------------------------------------------------------------------------------------------------------------------------------
 
 //реализация открытия формы редактирования профиля
@@ -38,6 +44,7 @@ function openEditForm () {
   nameInput.value = profileNameTextContent.textContent
   open(popUpEditProfile)
 }
+
 function closeEditForm () {
   close(popUpEditProfile)
 }
@@ -55,7 +62,6 @@ function handleSubmitEditProfile (evnt) {
 //----------------------------------------------------------------------------------------------------------------------------------------
 
 // Функции по работе с функционалом добавления карточек на страницу пользователем
-
 //реализация открытия и закрытия попапа с добавлением карточек.
 function openAddButton () {
   open(popUpAdd)
@@ -126,11 +132,32 @@ initialCards.forEach((item)=>{
 //----------------------------------------------------------------------------------------------------------------------------------------
 
 // эвент листенры и вызовы
-buttonAddNewCard.addEventListener('click', openAddButton)
-buttonCloseAddForm.addEventListener('click', closeAddButton)
-buttonClosePreview.addEventListener('click', closeCardImagePreview)
-cardFormElement.addEventListener('submit', handleCreateCardFromForm)
-buttonOpenEditProfile.addEventListener('click', openEditForm)
-buttonCloseEditButton.addEventListener('click', closeEditForm)
 formElement.addEventListener('submit', handleSubmitEditProfile); // отправление данных в шапку профиля
+cardFormElement.addEventListener('submit', handleCreateCardFromForm)
+
+buttonOpenEditProfile.addEventListener('click', openEditForm)
+buttonAddNewCard.addEventListener('click', openAddButton)
+
+popUpEditProfile.addEventListener('click', function(evt){
+  if(evt.target.classList.contains('popup__close-button_type_edit')||evt.target.classList.contains('popup_type_edit-profile')){
+    closeEditForm()
+  }
+})
+
+popUpAdd.addEventListener('click', function(evt) {
+  if(evt.target.classList.contains('popup__close-button_type_add')||evt.target.classList.contains('popup_type_add-card')){
+    closeAddButton()
+  }
+})
+
+popUpPreview.addEventListener('click',function(evt) {
+  if(evt.target.classList.contains('popup__close-button_type_opened-photo')||evt.target.classList.contains('popup_type_opened-photo')){
+    closeCardImagePreview()
+  }
+})
+
+
+document.addEventListener('keyup', closeOpenedByEsc)
 //----------------------------------------------------------------------------------------------------------------------------------------
+
+
