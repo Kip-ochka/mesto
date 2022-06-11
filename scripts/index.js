@@ -20,21 +20,23 @@ const previewText = document.querySelector('.popup__figcaption')
 const profileJobTextContent = document.querySelector('.profile__job')
 const profileNameTextContent = document.querySelector('.profile__name')
 const cardTemplate = document.querySelector('#card-template').content
-const popup = document.querySelector('.popup')
 //----------------------------------------------------------------------------------------------------------------------------------------
 
 //функция для открытия и закрытия попапа
 function open (popup) {
+  document.addEventListener('keyup', closeOpenedByEsc)
   popup.classList.add('popup_opened')
 }
 
 function close (popup) {
   popup.classList.remove('popup_opened')
+  document.removeEventListener('keyup',closeOpenedByEsc)
 }
 
 function closeOpenedByEsc(evt) {
   if(evt.key === 'Escape') {
   document.querySelector('.popup_opened').classList.remove('popup_opened');
+  document.removeEventListener('keyup',closeOpenedByEsc)
 }}
 //----------------------------------------------------------------------------------------------------------------------------------------
 
@@ -157,7 +159,6 @@ popUpPreview.addEventListener('click',function(evt) {
 })
 
 
-document.addEventListener('keyup', closeOpenedByEsc)
 //----------------------------------------------------------------------------------------------------------------------------------------
 
 
