@@ -48,12 +48,18 @@
         <button type="button" class="popup__close-button popup__close-button_type_edit"></button>
         <h3 class="popup__title">Редактировать профиль
         </h3>
-        <form name="profile" class="popup__form-wrapper popup__form-wrapper_type_edit-profile">
-          <fieldset class="popup__form">
-            <input type="text" class="popup__input popup__input_type_name" placeholder="Имя" name="name" required>
-            <input type="text" class="popup__input popup__input_type_job" placeholder="О себе" name="job" required>
+        <form name="profile" class="form form_type_edit-profile">
+          <fieldset class="form__fieldset">
+            <label class="form__formfield form__formfield_type_name">
+              <input type="text" class="form__input form__input_type_name" placeholder="Имя" name="name" minlength="2" maxlength="40" required>
+              <span class="form__input-error form__input-error_type_name"></span>
+            </label>
+           <label class="form__formfield form__formfield_type_job ">
+            <input type="text" class="form__input form__input_type_job" placeholder="О себе" name="job" minlength="2" maxlength="200" required>
+            <span class="form__input-error form__input-error_type_job"></span>
+          </label>
           </fieldset>
-          <button type="submit" class="popup__submit-button popup__submit-button_type_edit">Сохранить</button>
+          <button type="submit" class="form__button form__button_type_edit">Сохранить</button>
         </form>
       </div>
     </div>
@@ -63,12 +69,18 @@
         <button type="button" class="popup__close-button popup__close-button_type_add"></button>
         <h3 class="popup__title">Новое место
         </h3>
-        <form name="add-card" class="popup__form-wrapper popup__form-wrapper_type_add-card">
-          <fieldset class="popup__form">
-            <input type="text" class="popup__input popup__input_type_place-name" placeholder="Название" name="place-name" required>
-            <input type="url" class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" name="type_link" required>
+        <form name="add-card" class="form form_type_add-card">
+          <fieldset class="form__fieldset">
+            <label class="form__formfield form__formfield_type_place-name">
+              <input type="text" class="form__input form__input_type_place-name" placeholder="Название" name="place-name" required minlength="2" maxlength="40">
+              <span class="form__input-error form__input-error_type_place-name"></span>
+            </label>
+            <label class="form__formfield form__formfield_type_link">
+              <input type="url" class="form__input form__input_type_link" placeholder="Ссылка на картинку" name="link" required>
+              <span class="form__input-error form__input-error_type_link"></span>
+            </label>
           </fieldset>
-          <button type="submit" class="popup__submit-button popup__submit-button_type_add">Создать</button>
+          <button type="submit" class="form__button form__button_type_add">Создать</button>
         </form>
       </div>
     </div>
@@ -76,7 +88,7 @@
     <div class="popup popup_type_opened-photo">
       <div class="popup__container popup__container_type_opened-photo">
         <button type="button" class="popup__close-button popup__close-button_type_opened-photo"></button>
-        <img src="#" alt="" class="popup__opened-photo">
+        <img src="#" alt="Ваше фото" class="popup__opened-photo">
         <figcaption class="popup__figcaption"></figcaption>
       </div>
     </div>
@@ -98,5 +110,6 @@
 
   <script src="./scripts/cards.js"></script>
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-.popup__input{
+.form__input {
   font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -11,12 +11,13 @@
   max-width: 358px;
 }
 
-.popup__input::placeholder {
+.form__input::placeholder {
   font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
 }
 
+
 @media screen and (max-width: 1024px) {
-  .popup__input {
+  .form__input {
     margin-left: 22px;
     max-width: 238px;
   }

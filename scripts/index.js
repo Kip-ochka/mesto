@@ -2,17 +2,17 @@
 const buttonOpenEditProfile = document.querySelector('.profile__edit-button')// кнопка редактирования профиля
 const popUpEditProfile = document.querySelector('.popup_type_edit-profile') // блок попап редактирования профиля
 const buttonCloseEditButton = document.querySelector('.popup__close-button_type_edit') // кнопка закрытия попапа редактирования профиля
-const formElement = document.querySelector('.popup__container_type_edit') //контейнер формы редактирования
-const nameInput = document.querySelector('.popup__input_type_name') // поле ввода имени профиля
-const jobInput = document.querySelector('.popup__input_type_job') // поле ввода описания профиля
+const formEditElement = document.querySelector('.popup__container_type_edit') //контейнер формы редактирования
+const nameInput = document.querySelector('.form__input_type_name') // поле ввода имени профиля
+const jobInput = document.querySelector('.form__input_type_job') // поле ввода описания профиля
 const cardFormElement = document.querySelector('.popup__container_type_add') // контейнер формы добавления карточки
-const placeNameInput = document.querySelector('.popup__input_type_place-name') // импут имени карточки
-const linkInput = document.querySelector('.popup__input_type_link') // импут ссылки карточки
+const placeNameInput = document.querySelector('.form__input_type_place-name') // импут имени карточки
+const linkInput = document.querySelector('.form__input_type_link') // импут ссылки карточки
 const cardGrid = document.querySelector('.card-grid') // контейнер для карточек
 const buttonAddNewCard = document.querySelector('.profile__add-button') // кнопка добавления новой карточки
 const popUpAdd = document.querySelector('.popup_type_add-card') // попап окно для добавления карточки
 const buttonCloseAddForm = document.querySelector('.popup__close-button_type_add') // кнопка закрытия попапа добавления карточки
-const popUpAddForm = document.querySelector('.popup__form-wrapper_type_add-card') // form добавления карточки
+const popUpAddForm = document.querySelector('.form_type_add-card') // form добавления карточки
 const popUpPreview = document.querySelector('.popup_type_opened-photo')
 const buttonClosePreview = document.querySelector('.popup__close-button_type_opened-photo')
 const previewImage = document.querySelector('.popup__opened-photo')
@@ -134,7 +134,7 @@ initialCards.forEach((item)=>{
 //----------------------------------------------------------------------------------------------------------------------------------------
 
 // эвент листенры и вызовы
-formElement.addEventListener('submit', handleSubmitEditProfile); // отправление данных в шапку профиля
+formEditElement.addEventListener('submit', handleSubmitEditProfile); // отправление данных в шапку профиля
 cardFormElement.addEventListener('submit', handleCreateCardFromForm)
 
 buttonOpenEditProfile.addEventListener('click', openEditForm)

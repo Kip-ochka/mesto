@@ -1,13 +1,14 @@
-.popup__form {
+.form__fieldset {
   border: none;
   display: flex;
   flex-direction: column;
   padding: 0;
+  margin: 0;
   min-width: 430px;
-  gap: 30px;
+  gap: 10px;
 }
 @media screen and (max-width: 1024px) {
-  .popup__form {
+  .form__fieldset {
     min-width: 282px;
   }
 }
