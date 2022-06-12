@@ -14,7 +14,7 @@ const showInputError = (inputElement, errorElement, setting) => {
   errorElement.classList.add(setting.inputErrorClass)
 }
 
-const hideInputError = (inputElement,  errorElement, setting) => {
+const hideInputError = (inputElement, errorElement, setting) => {
   inputElement.classList.remove(setting.errorClass)
   inputElement.textContent = ''
   errorElement.classList.remove(setting.inputErrorClass)
@@ -54,13 +54,4 @@ const enableValidation = (setting) => {
   })
 }
 
-enableValidation({
-  formSelector: '.form',
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__button',
-  inactiveButtonClass: 'form__button_inactive',
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__input-error_active'
-})
-
-
+enableValidation(setting)
