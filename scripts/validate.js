@@ -32,9 +32,8 @@ const isValid = (formElement, inputElement, setting) => {
 const setEventListeners = (formElement, setting) => {
   const inputList = Array.from(formElement.querySelectorAll(setting.inputSelector))
   const buttonElement = formElement.querySelector(setting.submitButtonSelector)
-  const inactiveButtonElement = setting.inactiveButtonClass
 
-  toggleButtonState(inputList, buttonElement,inactiveButtonElement);
+  toggleButtonState(inputList, buttonElement);
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
