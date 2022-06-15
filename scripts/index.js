@@ -1,36 +1,4 @@
-//переменные
-const buttonOpenEditProfile = document.querySelector('.profile__edit-button')// кнопка редактирования профиля
-const popUpEditProfile = document.querySelector('.popup_type_edit-profile') // блок попап редактирования профиля
-const buttonCloseEditButton = document.querySelector('.popup__close-button_type_edit') // кнопка закрытия попапа редактирования профиля
-const formEditElement = document.querySelector('.popup__container_type_edit') //контейнер формы редактирования
-const nameInput = document.querySelector('.form__input_type_name') // поле ввода имени профиля
-const jobInput = document.querySelector('.form__input_type_job') // поле ввода описания профиля
-const cardFormElement = document.querySelector('.popup__container_type_add') // контейнер формы добавления карточки
-const placeNameInput = document.querySelector('.form__input_type_place-name') // импут имени карточки
-const linkInput = document.querySelector('.form__input_type_link') // импут ссылки карточки
-const cardGrid = document.querySelector('.card-grid') // контейнер для карточек
-const buttonAddNewCard = document.querySelector('.profile__add-button') // кнопка добавления новой карточки
-const popUpAdd = document.querySelector('.popup_type_add-card') // попап окно для добавления карточки
-const buttonCloseAddForm = document.querySelector('.popup__close-button_type_add') // кнопка закрытия попапа добавления карточки
-const popUpAddForm = document.querySelector('.form_type_add-card') // form добавления карточки
-const popUpPreview = document.querySelector('.popup_type_opened-photo')
-const buttonClosePreview = document.querySelector('.popup__close-button_type_opened-photo')
-const previewImage = document.querySelector('.popup__opened-photo')
-const previewText = document.querySelector('.popup__figcaption')
-const profileJobTextContent = document.querySelector('.profile__job')
-const profileNameTextContent = document.querySelector('.profile__name')
-const cardTemplate = document.querySelector('#card-template').content
-const setting = {
-  formSelector: '.form',
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__button',
-  inactiveButtonClass: 'form__button_inactive',
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__input-error_active'
-}
-//----------------------------------------------------------------------------------------------------------------------------------------
-
-//функция для открытия и закрытия попапа
+//функции для открытия и закрытия попапа
 function open (popup) {
   document.addEventListener('keyup', closeOpenedByEsc)
   popup.classList.add('popup_opened')
@@ -43,23 +11,26 @@ function close (popup) {
 
 function closeOpenedByEsc(evt) {
   if(evt.key === 'Escape') {
-  document.querySelector('.popup_opened').classList.remove('popup_opened');
-  document.removeEventListener('keyup',closeOpenedByEsc)
+    const openedPopup = document.querySelector(".popup_opened");
+    close(openedPopup);
 }}
-//----------------------------------------------------------------------------------------------------------------------------------------
 
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+      if (evt.target.classList.contains('popup_opened')||evt.target.classList.contains('popup__close-button')) {
+        close(popup)
+      }
+  })
+})
+
+//----------------------------------------------------------------------------------------------------------------------------------------
 //реализация открытия формы редактирования профиля
 function openEditForm () {
   jobInput.value = profileJobTextContent.textContent
   nameInput.value = profileNameTextContent.textContent
   open(popUpEditProfile)
 }
-
-function closeEditForm () {
-  close(popUpEditProfile)
-}
 //----------------------------------------------------------------------------------------------------------------------------------------
-
 //реализация изменеия профиля
 function handleSubmitEditProfile (evnt) {
   evnt.preventDefault()
@@ -67,23 +38,13 @@ function handleSubmitEditProfile (evnt) {
   profileNameTextContent.textContent = nameInput.value
   close(popUpEditProfile)
 }
-
-
 //----------------------------------------------------------------------------------------------------------------------------------------
-
 // Функции по работе с функционалом добавления карточек на страницу пользователем
-//реализация открытия и закрытия попапа с добавлением карточек.
+//реализация открытия попапа с добавлением карточек.
 function openAddButton () {
   open(popUpAdd)
-  popUpAddForm.reset()
-}
-
-function closeAddButton () {
-  close(popUpAdd)
-  popUpAddForm.reset()
 }
 //----------------------------------------------------------------------------------------------------------------------------------------
-
 // функция которая создает карточку
 function createCard (item) {
   const card = cardTemplate.querySelector('.card').cloneNode(true)
@@ -100,7 +61,6 @@ function createCard (item) {
   return card
 }
 //----------------------------------------------------------------------------------------------------------------------------------------
-
 //взаимодействия с карточками
 function activateLike (evnt) {
   evnt.target.classList.toggle('card__like-button_active')
@@ -110,17 +70,13 @@ function deleteCard (evnt) {
   evnt.target.closest('.card').remove()
 }
 
-function closeCardImagePreview () {
-  close(popUpPreview)
-}
-
 function openPreviewImage (item) {
   previewImage.src = item.link
+  previewImage.alt = item.name
   previewText.textContent = item.name
   open(popUpPreview)
 }
 //----------------------------------------------------------------------------------------------------------------------------------------
-
 // функция создающая карточку c загрузкой страницы из значений инпутов формы добавления карточки
 function handleCreateCardFromForm (event) {
   event.preventDefault()
@@ -129,44 +85,23 @@ function handleCreateCardFromForm (event) {
     link: linkInput.value,
   }
   const innerEL = createCard(inputValues)
+  event.target.querySelector('.form__button').setAttribute('disabled','')
   cardGrid.prepend(innerEL)
+
   close(popUpAdd)
+
+  popUpAddForm.reset()
 }
 //---------------------------------------------------------------------------------------------------------------------------------------
-
 // пререндер карточек из массива
 initialCards.forEach((item)=>{
   const prerendered = createCard(item)
   cardGrid.append(prerendered)
 })
 //----------------------------------------------------------------------------------------------------------------------------------------
-
 // эвент листенры и вызовы
 formEditElement.addEventListener('submit', handleSubmitEditProfile); // отправление данных в шапку профиля
 cardFormElement.addEventListener('submit', handleCreateCardFromForm)
-
 buttonOpenEditProfile.addEventListener('click', openEditForm)
 buttonAddNewCard.addEventListener('click', openAddButton)
-
-popUpEditProfile.addEventListener('click', function(evt){
-  if(evt.target.classList.contains('popup__close-button_type_edit')||evt.target.classList.contains('popup_type_edit-profile')){
-    closeEditForm()
-  }
-})
-
-popUpAdd.addEventListener('click', function(evt) {
-  if(evt.target.classList.contains('popup__close-button_type_add')||evt.target.classList.contains('popup_type_add-card')){
-    closeAddButton()
-  }
-})
-
-popUpPreview.addEventListener('click',function(evt) {
-  if(evt.target.classList.contains('popup__close-button_type_opened-photo')||evt.target.classList.contains('popup_type_opened-photo')){
-    closeCardImagePreview()
-  }
-})
-
-
 //----------------------------------------------------------------------------------------------------------------------------------------
-
-

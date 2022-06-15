@@ -20,6 +20,13 @@
   opacity: .8;
 }
 
+.form__button:disabled {
+  color: rgba(0, 0, 0,.2);
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, .2);
+  cursor: not-allowed;
+}
+
 @media screen and (max-width: 1024px) {
   .form__button {
     width: 238px;
