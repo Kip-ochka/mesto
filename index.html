@@ -86,11 +86,11 @@
     </div>
 
     <div class="popup popup_type_opened-photo">
-      <div class="popup__container popup__container_type_opened-photo">
+      <figure class="popup__container popup__container_type_opened-photo">
         <button type="button" class="popup__close-button popup__close-button_type_opened-photo"></button>
         <img src="#" alt="Ваше фото" class="popup__opened-photo">
         <figcaption class="popup__figcaption"></figcaption>
-      </div>
+      </figure>
     </div>
 
   </div>
@@ -108,8 +108,9 @@
     </div>
   </template>
 
-  <script src="./scripts/variables.js"></script>
-  <script src="./scripts/index.js"></script>
-  <script src="./scripts/validate.js"></script>
+  <script src="./scripts/index.js" type="module"></script>
+  <script src="./scripts/FormValidator.js" type="module"></script>
+  <script src="./scripts/validate.js" type="module"></script>
+
 </body>
 </html>
