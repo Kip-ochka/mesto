@@ -1,4 +1,4 @@
-import FormValidator from './FormValidator.js';
+import {FormValidator} from './FormValidator.js';
 
 const popups = document.querySelectorAll('.popup')
 const buttonOpenEditProfile = document.querySelector('.profile__edit-button')// кнопка редактирования профиля
