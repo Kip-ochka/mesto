@@ -1,10 +1,10 @@
 export default class FormValidator {
-  constructor(settings, formElement){
+  constructor(setting, formElement){
     this._formElement = formElement
-    this._inputSelector = settings.inputSelector
-    this._sumbitButtonSelector = settings.submitButtonSelector
-    this._inputErrorClass = settings.inputErrorClass
-    this._errorClass = settings.errorClass
+    this._inputSelector = setting.inputSelector
+    this._sumbitButtonSelector = setting.submitButtonSelector
+    this._inputErrorClass = setting.inputErrorClass
+    this._errorClass = setting.errorClass
   }
 
   _hasInvalidInput (inputList) {
