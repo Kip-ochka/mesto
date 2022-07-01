@@ -1,4 +1,5 @@
-import {FormValidator} from './FormValidator.js';
+import FormValidator from './FormValidator.js'
+import Card from './Card.js'
 
 const popups = document.querySelectorAll('.popup')
 const buttonOpenEditProfile = document.querySelector('.profile__edit-button')// кнопка редактирования профиля
@@ -54,6 +55,8 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
+
 //функции для открытия и закрытия попапа
 function open (popup) {
   document.addEventListener('keyup', closeOpenedByEsc)
@@ -150,10 +153,12 @@ function handleCreateCardFromForm (event) {
 }
 //---------------------------------------------------------------------------------------------------------------------------------------
 // пререндер карточек из массива
-initialCards.forEach((item)=>{
-  const prerendered = createCard(item)
-  cardGrid.append(prerendered)
+initialCards.forEach((inputValues)=>{
+  const card = new Card (inputValues, '#card-template')
+  const cardElement = card.generateCard()
+  cardGrid.prepend(cardElement)
 })
+
 //----------------------------------------------------------------------------------------------------------------------------------------
 // эвент листенры и вызовы
 formEditElement.addEventListener('submit', handleSubmitEditProfile); // отправление данных в шапку профиля
@@ -167,3 +172,4 @@ const allForms = document.querySelectorAll('.form').forEach((form)=>{
   validator.enableValidation()
 })
 
+const ala = new Card ()
