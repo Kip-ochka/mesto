@@ -3,18 +3,8 @@ export default class Card {
     this._name = values.name
     this._image = values.link
     this._cardSelector = cardSelector
+    console.log(this)
   }
-
-  _getTempate(){
-    const cardElement = document
-    .querySelector(this._cardSelector)
-    .content
-    .querySelector('.card')
-    .cloneNode(true);
-    console.log(cardElement)
-    return cardElement;
-  }
-
 
   generateCard(){
     this._element = this._getTemplate()
@@ -28,6 +18,15 @@ export default class Card {
     console.log(this)
     console.log(this._element)
     return this._element
+  }
+
+  _getTempate(){
+    const cardElement = document
+    .querySelector(this._cardSelector)
+    .content
+    .querySelector('.card')
+    .cloneNode(true);
+    return cardElement;
   }
 }
 
