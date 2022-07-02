@@ -1,6 +1,6 @@
 import FormValidator from './FormValidator.js'
 import Card from './Card.js'
-
+//Переменные
 const popups = document.querySelectorAll('.popup')
 const buttonOpenEditProfile = document.querySelector('.profile__edit-button')// кнопка редактирования профиля
 const popUpEditProfile = document.querySelector('.popup_type_edit-profile') // блок попап редактирования профиля
@@ -14,12 +14,9 @@ const cardGrid = document.querySelector('.card-grid') // контейнер дл
 const buttonAddNewCard = document.querySelector('.profile__add-button') // кнопка добавления новой карточки
 const popUpAdd = document.querySelector('.popup_type_add-card') // попап окно для добавления карточки
 const popUpAddForm = document.querySelector('.form_type_add-card') // form добавления карточки
-const popUpPreview = document.querySelector('.popup_type_opened-photo')
-const previewImage = document.querySelector('.popup__opened-photo')
-const previewText = document.querySelector('.popup__figcaption')
 const profileJobTextContent = document.querySelector('.profile__job')
 const profileNameTextContent = document.querySelector('.profile__name')
-const cardTemplate = document.querySelector('#card-template').content
+
 
 const setting = {
   formSelector: '.form',
@@ -55,9 +52,8 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-
-
-//функции для открытия и закрытия попапа
+//----------------------------------------------------------------------------------------------------------------------------------------
+//функции для открытия и закрытия попапов
 function open (popup) {
   document.addEventListener('keyup', closeOpenedByEsc)
   popup.classList.add('popup_opened')
@@ -81,7 +77,6 @@ popups.forEach((popup) => {
       }
   })
 })
-
 //----------------------------------------------------------------------------------------------------------------------------------------
 //реализация открытия формы редактирования профиля
 function openEditForm () {
@@ -98,44 +93,12 @@ function handleSubmitEditProfile (evnt) {
   close(popUpEditProfile)
 }
 //----------------------------------------------------------------------------------------------------------------------------------------
-// Функции по работе с функционалом добавления карточек на страницу пользователем
 //реализация открытия попапа с добавлением карточек.
 function openAddButton () {
   open(popUpAdd)
 }
 //----------------------------------------------------------------------------------------------------------------------------------------
-// функция которая создает карточку
-function createCard (item) {
-  const card = cardTemplate.querySelector('.card').cloneNode(true)
-  const likeButtonCard = card.querySelector('.card__like-button')
-  const deleteButtonCard = card.querySelector('.card__delete-button')
-  const cardImage = card.querySelector('.card__image')
-  const cardTitle = card.querySelector('.card__title')
-  cardImage.alt = item.name
-  cardImage.src = item.link
-  cardTitle.textContent = item.name
-  likeButtonCard.addEventListener('click', activateLike)
-  deleteButtonCard.addEventListener('click', deleteCard)
-  cardImage.addEventListener('click', ()=>{openPreviewImage(item)})
-  return card
-}
-//----------------------------------------------------------------------------------------------------------------------------------------
-//взаимодействия с карточками
-function activateLike (evnt) {
-  evnt.target.classList.toggle('card__like-button_active')
-}
 
-function deleteCard (evnt) {
-  evnt.target.closest('.card').remove()
-}
-
-function openPreviewImage (item) {
-  previewImage.src = item.link
-  previewImage.alt = item.name
-  previewText.textContent = item.name
-  open(popUpPreview)
-}
-//----------------------------------------------------------------------------------------------------------------------------------------
 // функция создающая карточку c загрузкой страницы из значений инпутов формы добавления карточки
 function handleCreateCardFromForm (event) {
   event.preventDefault()
@@ -143,22 +106,28 @@ function handleCreateCardFromForm (event) {
     name: placeNameInput.value,
     link: linkInput.value,
   }
-  const innerEL = createCard(inputValues)
+  const card = new Card ( inputValues,'#card-template')
+  const cardElement = card.generateCard()
   event.target.querySelector('.form__button').setAttribute('disabled','')
-  cardGrid.prepend(innerEL)
+  cardGrid.prepend(cardElement)
 
   close(popUpAdd)
 
   popUpAddForm.reset()
 }
 //---------------------------------------------------------------------------------------------------------------------------------------
-// пререндер карточек из массива
+// рендер карточек из массива
 initialCards.forEach((inputValues)=>{
   const card = new Card (inputValues, '#card-template')
   const cardElement = card.generateCard()
   cardGrid.prepend(cardElement)
 })
-
+//----------------------------------------------------------------------------------------------------------------------------------------
+//валидация форм
+document.querySelectorAll('.form').forEach((formElement)=>{
+  const validate = new FormValidator(setting, formElement)
+  validate.enableValidation()
+})
 //----------------------------------------------------------------------------------------------------------------------------------------
 // эвент листенры и вызовы
 formEditElement.addEventListener('submit', handleSubmitEditProfile); // отправление данных в шапку профиля
@@ -167,9 +136,4 @@ buttonOpenEditProfile.addEventListener('click', openEditForm)
 buttonAddNewCard.addEventListener('click', openAddButton)
 //----------------------------------------------------------------------------------------------------------------------------------------
 
-const allForms = document.querySelectorAll('.form').forEach((form)=>{
-  let validator = new FormValidator (setting, form)
-  validator.enableValidation()
-})
-
-const ala = new Card ()
+export {open}
