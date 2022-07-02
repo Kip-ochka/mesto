@@ -1,5 +1,5 @@
 import FormValidator from './FormValidator.js'
-import Card from './Card.js'
+import {Card} from './Card.js'
 //Переменные
 const popups = document.querySelectorAll('.popup')
 const buttonOpenEditProfile = document.querySelector('.profile__edit-button')// кнопка редактирования профиля
@@ -16,9 +16,11 @@ const popUpAdd = document.querySelector('.popup_type_add-card') // попап о
 const popUpAddForm = document.querySelector('.form_type_add-card') // form добавления карточки
 const profileJobTextContent = document.querySelector('.profile__job')
 const profileNameTextContent = document.querySelector('.profile__name')
+const popUpPreview = document.querySelector('.popup_type_opened-photo')
+const previewImage = document.querySelector('.popup__opened-photo')
+const previewText = document.querySelector('.popup__figcaption')
 
-
-const setting = {
+const config = {
   formSelector: '.form',
   inputSelector: '.form__input',
   submitButtonSelector: '.form__button',
@@ -98,7 +100,11 @@ function openAddButton () {
   open(popUpAdd)
 }
 //----------------------------------------------------------------------------------------------------------------------------------------
-
+//отдельная функция создания карточек
+function createCard(inputValues) {
+  const card = new Card(inputValues, '#card-template', handleCardClick)
+  return card.generateCard()
+}
 // функция создающая карточку c загрузкой страницы из значений инпутов формы добавления карточки
 function handleCreateCardFromForm (event) {
   event.preventDefault()
@@ -106,34 +112,49 @@ function handleCreateCardFromForm (event) {
     name: placeNameInput.value,
     link: linkInput.value,
   }
-  const card = new Card ( inputValues,'#card-template')
-  const cardElement = card.generateCard()
-  event.target.querySelector('.form__button').setAttribute('disabled','')
-  cardGrid.prepend(cardElement)
-
+  cardGrid.prepend(createCard(inputValues))
   close(popUpAdd)
-
   popUpAddForm.reset()
 }
 //---------------------------------------------------------------------------------------------------------------------------------------
 // рендер карточек из массива
 initialCards.forEach((inputValues)=>{
-  const card = new Card (inputValues, '#card-template')
-  const cardElement = card.generateCard()
-  cardGrid.prepend(cardElement)
+  cardGrid.prepend(createCard(inputValues))
 })
 //----------------------------------------------------------------------------------------------------------------------------------------
-//валидация форм
-document.querySelectorAll('.form').forEach((formElement)=>{
-  const validate = new FormValidator(setting, formElement)
-  validate.enableValidation()
-})
+//Валидация форм
+const formValidators = {}
+
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector))
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement)
+    const formName = formElement.getAttribute('name')
+    formValidators[formName] = validator;
+
+    validator.enableValidation();
+  });
+};
+
+enableValidation(config)
 //----------------------------------------------------------------------------------------------------------------------------------------
 // эвент листенры и вызовы
 formEditElement.addEventListener('submit', handleSubmitEditProfile); // отправление данных в шапку профиля
 cardFormElement.addEventListener('submit', handleCreateCardFromForm)
-buttonOpenEditProfile.addEventListener('click', openEditForm)
-buttonAddNewCard.addEventListener('click', openAddButton)
+buttonOpenEditProfile.addEventListener('click', ()=>{
+  formValidators['profile'].resetValidation()
+  openEditForm ()
+})
+buttonAddNewCard.addEventListener('click', ()=> {
+  formValidators['addcard'].resetValidation()
+  openAddButton ()
+})
 //----------------------------------------------------------------------------------------------------------------------------------------
+function handleCardClick(name, link) {
+  previewImage.alt = name
+  previewImage.src = link
+  previewText.textContent = name
+  open(popUpPreview)
+}
 
 export {open}
