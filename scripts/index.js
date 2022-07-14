@@ -1,5 +1,6 @@
 import FormValidator from './FormValidator.js'
 import {Card} from './Card.js'
+import Section from './Section.js'
 //Переменные
 const popups = document.querySelectorAll('.popup')
 const buttonOpenEditProfile = document.querySelector('.profile__edit-button')// кнопка редактирования профиля
@@ -55,31 +56,7 @@ const initialCards = [
   }
 ];
 //----------------------------------------------------------------------------------------------------------------------------------------
-//функции для открытия и закрытия попапов
-function open (popup) {
-  document.addEventListener('keyup', closeOpenedByEsc)
-  popup.classList.add('popup_opened')
-}
 
-function close (popup) {
-  popup.classList.remove('popup_opened')
-  document.removeEventListener('keyup',closeOpenedByEsc)
-}
-
-function closeOpenedByEsc(evt) {
-  if(evt.key === 'Escape') {
-    const openedPopup = document.querySelector(".popup_opened");
-    close(openedPopup);
-}}
-
-popups.forEach((popup) => {
-  popup.addEventListener('mousedown', (evt) => {
-      if (evt.target.classList.contains('popup_opened')||evt.target.classList.contains('popup__close-button')) {
-        close(popup)
-      }
-  })
-})
-//----------------------------------------------------------------------------------------------------------------------------------------
 //реализация открытия формы редактирования профиля
 function openEditForm () {
   jobInput.value = profileJobTextContent.textContent
@@ -96,7 +73,7 @@ function handleSubmitEditProfile (evnt) {
 }
 //----------------------------------------------------------------------------------------------------------------------------------------
 //реализация открытия попапа с добавлением карточек.
-function openAddButton () {
+ function openAddButton () {
   open(popUpAdd)
 }
 //----------------------------------------------------------------------------------------------------------------------------------------
@@ -118,9 +95,15 @@ function handleCreateCardFromForm (event) {
 }
 //---------------------------------------------------------------------------------------------------------------------------------------
 // рендер карточек из массива
-initialCards.forEach((inputValues)=>{
-  cardGrid.prepend(createCard(inputValues))
-})
+ const prerenderList = new Section ({
+  data: initialCards,
+  renderer: (item)=>{
+  const card = createCard(item)
+    prerenderList.setItem(card)
+  }
+}, cardGrid)
+
+prerenderList.renderItems()
 //----------------------------------------------------------------------------------------------------------------------------------------
 //Валидация форм
 const formValidators = {}
@@ -157,4 +140,3 @@ function handleCardClick(name, link) {
   open(popUpPreview)
 }
 
-export {open}
