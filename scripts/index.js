@@ -164,7 +164,6 @@ const enableValidation = (config) => {
 enableValidation(config)
 //----------------------------------------------------------------------------------------------------------------------------------------
 // эвент листенры и вызовы
-
 /*formEditElement.addEventListener('submit', handleSubmitEditProfile); // отправление данных в шапку профиля
 cardFormElement.addEventListener('submit', handleCreateCardFromForm)
 buttonOpenEditProfile.addEventListener('click', ()=>{
