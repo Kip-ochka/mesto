@@ -1,9 +1,13 @@
 import FormValidator from './FormValidator.js'
+<<<<<<< HEAD
 import Card from './Card.js'
 import Section from './Section.js'
 import Popup from './Popup.js'
 import PopupWithImage from './PopupWithImage.js'
 import PopupWithForm from './PopupWithForm.js'
+=======
+import {Card} from './Card.js'
+>>>>>>> f67ab3205aa2c1c3d6bef2a533e21609b7c717d3
 //Переменные
 const popups = document.querySelectorAll('.popup')
 const buttonOpenEditProfile = document.querySelector('.profile__edit-button')// кнопка редактирования профиля
@@ -60,7 +64,11 @@ const initialCards = [
 ];
 //----------------------------------------------------------------------------------------------------------------------------------------
 //функции для открытия и закрытия попапов
+<<<<<<< HEAD
 /* function open (popup) {
+=======
+function open (popup) {
+>>>>>>> f67ab3205aa2c1c3d6bef2a533e21609b7c717d3
   document.addEventListener('keyup', closeOpenedByEsc)
   popup.classList.add('popup_opened')
 }
@@ -82,6 +90,7 @@ popups.forEach((popup) => {
         close(popup)
       }
   })
+<<<<<<< HEAD
 }) */
 //----------------------------------------------------------------------------------------------------------------------------------------
 //реализация открытия формы редактирования профиля
@@ -90,6 +99,16 @@ popups.forEach((popup) => {
   nameInput.value = profileNameTextContent.textContent
   open(popUpEditProfile)
 } */
+=======
+})
+//----------------------------------------------------------------------------------------------------------------------------------------
+//реализация открытия формы редактирования профиля
+function openEditForm () {
+  jobInput.value = profileJobTextContent.textContent
+  nameInput.value = profileNameTextContent.textContent
+  open(popUpEditProfile)
+}
+>>>>>>> f67ab3205aa2c1c3d6bef2a533e21609b7c717d3
 //----------------------------------------------------------------------------------------------------------------------------------------
 //реализация изменеия профиля
 function handleSubmitEditProfile (evnt) {
@@ -100,7 +119,13 @@ function handleSubmitEditProfile (evnt) {
 }
 //----------------------------------------------------------------------------------------------------------------------------------------
 //реализация открытия попапа с добавлением карточек.
+<<<<<<< HEAD
 
+=======
+function openAddButton () {
+  open(popUpAdd)
+}
+>>>>>>> f67ab3205aa2c1c3d6bef2a533e21609b7c717d3
 //----------------------------------------------------------------------------------------------------------------------------------------
 //отдельная функция создания карточек
 function createCard(inputValues) {
@@ -120,6 +145,7 @@ function handleCreateCardFromForm (event) {
 }
 //---------------------------------------------------------------------------------------------------------------------------------------
 // рендер карточек из массива
+<<<<<<< HEAD
 const prerenderList = new Section ({
   data: initialCards,
   renderer: (item)=>{
@@ -132,6 +158,11 @@ prerenderList.renderItems()
 /* initialCards.forEach((inputValues)=>{
   cardGrid.prepend(createCard(inputValues))
 }) */
+=======
+initialCards.forEach((inputValues)=>{
+  cardGrid.prepend(createCard(inputValues))
+})
+>>>>>>> f67ab3205aa2c1c3d6bef2a533e21609b7c717d3
 //----------------------------------------------------------------------------------------------------------------------------------------
 //Валидация форм
 const formValidators = {}
@@ -150,7 +181,11 @@ const enableValidation = (config) => {
 enableValidation(config)
 //----------------------------------------------------------------------------------------------------------------------------------------
 // эвент листенры и вызовы
+<<<<<<< HEAD
 /* formEditElement.addEventListener('submit', handleSubmitEditProfile); // отправление данных в шапку профиля
+=======
+formEditElement.addEventListener('submit', handleSubmitEditProfile); // отправление данных в шапку профиля
+>>>>>>> f67ab3205aa2c1c3d6bef2a533e21609b7c717d3
 cardFormElement.addEventListener('submit', handleCreateCardFromForm)
 buttonOpenEditProfile.addEventListener('click', ()=>{
   formValidators['profile'].resetValidation()
@@ -159,6 +194,7 @@ buttonOpenEditProfile.addEventListener('click', ()=>{
 buttonAddNewCard.addEventListener('click', ()=> {
   formValidators['addcard'].resetValidation()
   openAddButton ()
+<<<<<<< HEAD
 }) */
 //----------------------------------------------------------------------------------------------------------------------------------------
 const bigPicOpen = new PopupWithImage(popUpPreview)
