@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 export default class Card {
-=======
-class Card {
->>>>>>> f67ab3205aa2c1c3d6bef2a533e21609b7c717d3
   constructor(values,cardSelector, handleCardClick) {
     this._name = values.name
     this._link = values.link
@@ -52,8 +48,4 @@ class Card {
     return this._element
   }
 }
-<<<<<<< HEAD
-=======
 
-export {Card}
->>>>>>> f67ab3205aa2c1c3d6bef2a533e21609b7c717d3
