@@ -81,15 +81,10 @@ function createCard(inputValues) {
   return card.generateCard()
 }
 // функция создающая карточку c загрузкой страницы из значений инпутов формы добавления карточки
-function handleCreateCardFromForm (event) {
-  event.preventDefault()
-  const inputValues = {
-    name: placeNameInput.value,
-    link: linkInput.value,
-  }
-  cardGrid.prepend(createCard(inputValues))
-  close(popUpAdd)
-  popUpAddForm.reset()
+function handleCreateCardFromForm (obj) {
+  const card = createCard(obj)
+  prerenderList.setItem(card)
+  popupAddCard.close()
 }
 //---------------------------------------------------------------------------------------------------------------------------------------
 // рендер карточек из массива
@@ -120,7 +115,7 @@ const enableValidation = (config) => {
 enableValidation(config)
 //----------------------------------------------------------------------------------------------------------------------------------------
 // эвент листенры и вызовы
-/*formEditElement.addEventListener('submit', handleSubmitEditProfile); // отправление данных в шапку профиля
+/* formEditElement.addEventListener('submit', handleSubmitEditProfile); // отправление данных в шапку профиля
 cardFormElement.addEventListener('submit', handleCreateCardFromForm)
 buttonOpenEditProfile.addEventListener('click', ()=>{
   formValidators['profile'].resetValidation()
@@ -151,4 +146,5 @@ buttonOpenEditProfile.addEventListener('click', openEditPopup)
 popupEdit.setEventListeners()
 bigPicOpen.setEventListeners()
 popupAddCard.setEventListeners()
+
 
