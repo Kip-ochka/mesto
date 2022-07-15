@@ -1,7 +1,6 @@
 import FormValidator from './FormValidator.js'
 import Card from './Card.js'
 import Section from './Section.js'
-import Popup from './Popup.js'
 import PopupWithImage from './PopupWithImage.js'
 import PopupWithForm from './PopupWithForm.js'
 
@@ -60,41 +59,6 @@ const initialCards = [
   }
 ];
 //----------------------------------------------------------------------------------------------------------------------------------------
-//функции для открытия и закрытия попапов
-/*
-function open (popup) {
-  document.addEventListener('keyup', closeOpenedByEsc)
-  popup.classList.add('popup_opened')
-}
-
-function close (popup) {
-  popup.classList.remove('popup_opened')
-  document.removeEventListener('keyup',closeOpenedByEsc)
-}
-
-function closeOpenedByEsc(evt) {
-  if(evt.key === 'Escape') {
-    const openedPopup = document.querySelector(".popup_opened");
-    close(openedPopup);
-}}
-
-popups.forEach((popup) => {
-  popup.addEventListener('mousedown', (evt) => {
-      if (evt.target.classList.contains('popup_opened')||evt.target.classList.contains('popup__close-button')) {
-        close(popup)
-      }
-  })
-}) */
-//----------------------------------------------------------------------------------------------------------------------------------------
-//реализация открытия формы редактирования профиля
-/* function openEditForm () {
-  jobInput.value = profileJobTextContent.textContent
-  nameInput.value = profileNameTextContent.textContent
-  open(popUpEditProfile)
-} */
-
-//----------------------------------------------------------------------------------------------------------------------------------------
-//реализация открытия формы редактирования профиля
 function openEditForm () {
   jobInput.value = profileJobTextContent.textContent
   nameInput.value = profileNameTextContent.textContent
@@ -108,11 +72,6 @@ function handleSubmitEditProfile (evnt) {
   profileJobTextContent.textContent = jobInput.value
   profileNameTextContent.textContent = nameInput.value
   close(popUpEditProfile)
-}
-//----------------------------------------------------------------------------------------------------------------------------------------
-//реализация открытия попапа с добавлением карточек.
-function openAddButton () {
-  open(popUpAdd)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------
@@ -143,9 +102,6 @@ const prerenderList = new Section ({
 }, cardGrid)
 
 prerenderList.renderItems()
-/* initialCards.forEach((inputValues)=>{
-  cardGrid.prepend(createCard(inputValues))
-}) */
 //----------------------------------------------------------------------------------------------------------------------------------------
 //Валидация форм
 const formValidators = {}
