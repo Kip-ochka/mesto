@@ -10,6 +10,6 @@ export default class Section {
   }
 
   setItem(element) {
-    this._containerForCards.append(element);
+    this._containerForCards.prepend(element);
   }
  }

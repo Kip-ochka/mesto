@@ -81,8 +81,8 @@ function createCard(inputValues) {
   return card.generateCard()
 }
 // функция создающая карточку c загрузкой страницы из значений инпутов формы добавления карточки
-function handleCreateCardFromForm (obj) {
-  const card = createCard(obj)
+function handleCreateCardFromForm (inputValues) {
+  const card = createCard(inputValues)
   prerenderList.setItem(card)
   popupAddCard.close()
 }
