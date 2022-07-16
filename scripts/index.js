@@ -99,7 +99,7 @@ function openAddCardPopup(){
   popupAddCard.open()
 }
 
-function handleSubmitEditProfile (evnt) {
+function handleSubmitEditProfile (evnt) {М
   evnt.preventDefault()
   userInfo.setUserInfo(editInputs)
   popupEdit.close()
