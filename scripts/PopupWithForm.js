@@ -28,4 +28,10 @@ export default class PopupWithForm extends Popup {
     this._form.reset()
     super.close()
   }
+
+  setInputValues(obj) {
+    this._inputsList.forEach(input => {
+        input.value = obj[input.id];
+    })
+  }
 }

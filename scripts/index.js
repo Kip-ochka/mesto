@@ -3,7 +3,7 @@ import Card from './Card.js'
 import Section from './Section.js'
 import PopupWithImage from './PopupWithImage.js'
 import PopupWithForm from './PopupWithForm.js'
-
+import UserInfo from './UserInfo.js'
 //Переменные
 const popups = document.querySelectorAll('.popup')
 const buttonOpenEditProfile = document.querySelector('.profile__edit-button')// кнопка редактирования профиля
@@ -58,36 +58,18 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-//----------------------------------------------------------------------------------------------------------------------------------------
-function openEditForm () {
-  jobInput.value = profileJobTextContent.textContent
-  nameInput.value = profileNameTextContent.textContent
-  open(popUpEditProfile)
-}
 
-//----------------------------------------------------------------------------------------------------------------------------------------
-//реализация изменеия профиля
-function handleSubmitEditProfile (evnt) {
-  evnt.preventDefault()
-  profileJobTextContent.textContent = jobInput.value
-  profileNameTextContent.textContent = nameInput.value
-  close(popUpEditProfile)
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------
-//отдельная функция создания карточек
 function createCard(inputValues) {
   const card = new Card(inputValues, '#card-template', handleCardClick)
   return card.generateCard()
 }
-// функция создающая карточку c загрузкой страницы из значений инпутов формы добавления карточки
+
 function handleCreateCardFromForm (inputValues) {
   const card = createCard(inputValues)
   prerenderList.setItem(card)
   popupAddCard.close()
 }
-//---------------------------------------------------------------------------------------------------------------------------------------
-// рендер карточек из массива
+
 const prerenderList = new Section ({
   data: initialCards,
   renderer: (item)=>{
@@ -97,9 +79,31 @@ const prerenderList = new Section ({
 }, cardGrid)
 
 prerenderList.renderItems()
-//----------------------------------------------------------------------------------------------------------------------------------------
-//Валидация форм
+
 const formValidators = {}
+const bigPicOpen = new PopupWithImage(popUpPreview)
+const popupEdit = new PopupWithForm(popUpEditProfile, handleSubmitEditProfile)
+const popupAddCard = new PopupWithForm(popUpAdd, handleCreateCardFromForm)
+const editInputs = {name:nameInput, job: jobInput}
+const userInfo = new UserInfo(editInputs)
+
+function handleCardClick(name, link) {
+  bigPicOpen.open(name, link)
+}
+
+function openEditPopup(){
+  popupEdit.open()
+}
+
+function openAddCardPopup(){
+  popupAddCard.open()
+}
+
+function handleSubmitEditProfile (evnt) {
+  evnt.preventDefault()
+  userInfo.setUserInfo(editInputs)
+  popupEdit.close()
+}
 
 const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector))
@@ -113,38 +117,16 @@ const enableValidation = (config) => {
 };
 
 enableValidation(config)
-//----------------------------------------------------------------------------------------------------------------------------------------
-// эвент листенры и вызовы
-/* formEditElement.addEventListener('submit', handleSubmitEditProfile); // отправление данных в шапку профиля
-cardFormElement.addEventListener('submit', handleCreateCardFromForm)
-buttonOpenEditProfile.addEventListener('click', ()=>{
-  formValidators['profile'].resetValidation()
-  openEditForm ()
-})
-buttonAddNewCard.addEventListener('click', ()=> {
-  formValidators['addcard'].resetValidation()
-  openAddButton ()
-}) */
-//----------------------------------------------------------------------------------------------------------------------------------------
-const bigPicOpen = new PopupWithImage(popUpPreview)
-const popupEdit = new PopupWithForm(popUpEditProfile, handleSubmitEditProfile)
-const popupAddCard = new PopupWithForm(popUpAdd, handleCreateCardFromForm)
 
-function handleCardClick(name, link) {
-  bigPicOpen.open(name, link)
-}
-
-function openEditPopup(){
-  popupEdit.open()
-}
-
-function openAddCardPopup(){
-  popupAddCard.open()
-}
-buttonAddNewCard.addEventListener('click', openAddCardPopup)
-buttonOpenEditProfile.addEventListener('click', openEditPopup)
 popupEdit.setEventListeners()
 bigPicOpen.setEventListeners()
 popupAddCard.setEventListeners()
 
-
+buttonOpenEditProfile.addEventListener('click', ()=>{
+  formValidators['profile'].resetValidation()
+  openEditPopup()
+})
+buttonAddNewCard.addEventListener('click', ()=> {
+  formValidators['addcard'].resetValidation()
+  openAddCardPopup()
+})
