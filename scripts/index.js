@@ -124,6 +124,7 @@ popupAddCard.setEventListeners()
 
 buttonOpenEditProfile.addEventListener('click', ()=>{
   formValidators['profile'].resetValidation()
+  popupEdit.setInputValues()
   openEditPopup()
 })
 buttonAddNewCard.addEventListener('click', ()=> {
