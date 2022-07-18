@@ -9,7 +9,6 @@ const popups = document.querySelectorAll('.popup')
 const buttonOpenEditProfile = document.querySelector('.profile__edit-button')// кнопка редактирования профиля
 const popUpEditProfile = document.querySelector('.popup_type_edit-profile') // блок попап редактирования профиля
 const formEditElement = document.querySelector('.popup__container_type_edit') //контейнер формы редактирования
-
 const cardFormElement = document.querySelector('.popup__container_type_add') // контейнер формы добавления карточки
 const placeNameInput = document.querySelector('.form__input_type_place-name') // импут имени карточки
 const linkInput = document.querySelector('.form__input_type_link') // импут ссылки карточки
@@ -85,7 +84,7 @@ const popupEdit = new PopupWithForm(popUpEditProfile, handleSubmitEditProfile)
 const popupAddCard = new PopupWithForm(popUpAdd, handleCreateCardFromForm)
 const nameInput = document.querySelector('.form__input_type_name') // поле ввода имени профиля
 const jobInput = document.querySelector('.form__input_type_job') // поле ввода описания профиля
-const editInputs = {name:nameInput, job:jobInput}
+const editInputs = {name:profileNameTextContent, job:profileJobTextContent}
 const userInfo = new UserInfo(editInputs)
 
 function handleCardClick(name, link) {
