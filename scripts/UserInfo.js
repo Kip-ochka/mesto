@@ -6,15 +6,14 @@ export default class UserInfo {
   }
 
   getUserInfo(){
-    this._profileData = {
+    return {
       name: this._name.textContent,
       job: this._job.textContent
     }
-    return this._profileData
   }
-  setUserInfo(obj){
-    this._name.textContent = obj.name
-    this._job.textContent = obj.job
+  setUserInfo(userData){
+    this._name.textContent = userData.name
+    this._job.textContent = userData.job
   }
 
 }
