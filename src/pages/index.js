@@ -68,13 +68,11 @@ const enableValidation = (config) => {
     const validator = new FormValidator(config, formElement)
     const formName = formElement.getAttribute('name')
     formValidators[formName] = validator;
-
     validator.enableValidation();
   });
 };
 
 enableValidation(config)
-
 popupEdit.setEventListeners()
 bigPicOpen.setEventListeners()
 popupAddCard.setEventListeners()
