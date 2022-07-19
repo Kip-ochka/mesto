@@ -1,11 +1,11 @@
 const buttonOpenEditProfile = document.querySelector('.profile__edit-button')// кнопка редактирования профиля
-const popUpEditProfile = document.querySelector('.popup_type_edit-profile') // блок попап редактирования профиля
+const popUpEditProfile = '.popup_type_edit-profile' // блок попап редактирования профиля
 const cardGrid = document.querySelector('.card-grid') // контейнер для карточек
 const buttonAddNewCard = document.querySelector('.profile__add-button') // кнопка добавления новой карточки
-const popUpAdd = document.querySelector('.popup_type_add-card') // попап окно для добавления карточки
-const profileJobTextContent = document.querySelector('.profile__job')
-const profileNameTextContent = document.querySelector('.profile__name')
-const popUpPreview = document.querySelector('.popup_type_opened-photo')
+const popUpAdd = '.popup_type_add-card' // попап окно для добавления карточки
+const profileJobTextContent = '.profile__job'
+const profileNameTextContent = '.profile__name'
+const popUpPreview = '.popup_type_opened-photo'
 
 const config = {
   formSelector: '.form',

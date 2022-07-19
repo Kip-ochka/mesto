@@ -1,8 +1,8 @@
 export default class UserInfo {
   constructor(editInputs){
     this._editInputs = editInputs
-    this._name = editInputs.name
-    this._job = editInputs.job
+    this._name = document.querySelector(editInputs.name)
+    this._job = document.querySelector(editInputs.job)
   }
 
   getUserInfo(){
